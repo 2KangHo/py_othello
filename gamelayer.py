@@ -75,7 +75,7 @@ class GameLayer(cocos.layer.Layer):
         # decision on outcome
     
     # check position
-    def isPossiable(self, x, y, turn, board):
+    def isPossible(self, x, y, turn, board):
         rtnList = list()
         if board[y][x] != 0:
             return rtnList # table

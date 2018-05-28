@@ -39,7 +39,7 @@ class GameLayer(cocos.layer.Layer):
         for y in range(0, self.row):
             for x in range(0, self.column):
                 centerPt = eu.Vector2(x*self.square + self.square/2, y*self.square + self.square/2)
-                self.disk[y][x] = cocos.sprite.Sprite('ball.png', position = centerPt, color = (255, 255, 255))
+                self.disk[y][x] = cocos.sprite.Sprite('assets/ball.png', position = centerPt, color = (255, 255, 255))
                 self.add(self.disk[y][x])
         
         self.setup()
@@ -100,12 +100,16 @@ class GameLayer(cocos.layer.Layer):
 
                 bDetected = False
                 revList = []
-                if board[y+dirY][x+dirX] == turn*-1:
+                if board[y+dirY][x+dirX] == turn*-1: # 상대방 돌이면
                     revList.append((x+dirX, y+dirY))
                     for xx, yy in zip(xList, yList):
-                        pass
-                        # check xx, yy
-                        # check board[yy][xx]
+                        if board[xx][yy] == 0:
+                            break
+                        elif board[xx][yy] == turn:
+                            bDetected == True
+                            break
+                        elif board[xx][yy] == turn*-1:
+                            revList.append((xx, yy))
                     if(bDetected == False):
                         revList = []
 
